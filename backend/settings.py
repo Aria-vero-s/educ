@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-8!=ivq8=o2@&#-rv5c=52!stc=!d+-)nm@1jfz!+^i3ikt-l^8
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['vigilant-charisma.railway.app', '0.0.0.0']
+ALLOWED_HOSTS = ['vigilant-charisma.railway.app', '0.0.0.0', '127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -39,13 +39,20 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'kiosk',
+    'accounts',
+    'education',
+    'authentication',
     'rest_framework',
+    'rest_framework.authtoken',
+    'rest_framework_simplejwt',
     'corsheaders',  # Pour gérer les requêtes entre React et Django
     'backend',  # Nom de ton app principale (ajoute-la après création)
 ]
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
+    # 'rest_framework_simplejwt.authentication.JWTAuthentication',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -55,7 +62,19 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+    ),
+}
+
 CORS_ALLOW_ALL_ORIGINS = True
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",  # Ton frontend React en local
+    "https://ton-domaine.com"  # Ton domaine en prod
+]
 
 ROOT_URLCONF = 'backend.urls'
 
@@ -92,6 +111,8 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 DATABASES = {
     'default': dj_database_url.config(default=os.getenv("DATABASE_URL"))
 }
+
+AUTH_USER_MODEL = 'accounts.CustomUser'
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
