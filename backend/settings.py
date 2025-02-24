@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-8!=ivq8=o2@&#-rv5c=52!stc=!d+-)nm@1jfz!+^i3ikt-l^8
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['vigilant-charisma.railway.app', '0.0.0.0', '127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['vigilant-charisma.railway.app', '0.0.0.0', '127.0.0.1', 'localhost', 'educ-production.up.railway.app']
 
 
 # Application definition
