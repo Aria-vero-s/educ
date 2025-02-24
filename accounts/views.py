@@ -31,12 +31,14 @@ def register(request):
         try:
             data = json.loads(request.body)
             username = data.get("username")
+            email = data.get("email")
             password = data.get("password")
+            role = data.get("role")
 
             if User.objects.filter(username=username).exists():
                 return JsonResponse({"error": "Utilisateur déjà existant"}, status=400)
 
-            user = User.objects.create_user(username=username, password=password)
+            user = User.objects.create_user(username=username, email=email, password=password, role=role)
             return JsonResponse({"message": "Inscription réussie"}, status=201)
 
         except Exception as e:

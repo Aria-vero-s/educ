@@ -24,8 +24,8 @@ const Login = () => {
       if (response.ok) {
         localStorage.setItem("token", data.token);
         localStorage.setItem("role", data.role);
-
-        // Redirection selon le rôle
+      
+        // Redirection according to role
         switch (data.role) {
           case "student":
             navigate("/dashboard/student");
@@ -49,6 +49,7 @@ const Login = () => {
       } else {
         setError(data.error || "Erreur de connexion");
       }
+      
     } catch (error) {
       setError("Erreur réseau");
     }

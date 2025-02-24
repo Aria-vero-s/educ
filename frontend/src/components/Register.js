@@ -7,7 +7,7 @@ const Register = () => {
         username: "",
         email: "",
         password: "",
-        role: "eleve"
+        role: "student"
     });
 
     const navigate = useNavigate();
@@ -64,28 +64,24 @@ const Register = () => {
                 // Redirection selon le rôle, identique à la page Login
                 switch (loginResponse.data.role) {
                     case "student":
-                    case "eleve":
-                        navigate("/dashboard/student");
-                        break;
+                      navigate("/dashboard/student");
+                      break;
                     case "teacher":
-                    case "enseignant":
-                        navigate("/dashboard/teacher");
-                        break;
+                      navigate("/dashboard/teacher");
+                      break;
                     case "parent":
-                        navigate("/dashboard/parent");
-                        break;
+                      navigate("/dashboard/parent");
+                      break;
                     case "director":
-                    case "directeur":
-                        navigate("/dashboard/director");
-                        break;
+                      navigate("/dashboard/director");
+                      break;
                     case "secretary":
-                    case "secretaire":
-                        navigate("/dashboard/secretary");
-                        break;
+                      navigate("/dashboard/secretary");
+                      break;
                     default:
-                        navigate("/dashboard/other");
-                        break;
-                }
+                      navigate("/dashboard/other");
+                      break;
+                  }                  
             } else {
                 alert("Erreur lors de la connexion automatique.");
                 navigate("/");
@@ -105,13 +101,13 @@ const Register = () => {
                 <input type="email" name="email" placeholder="Email" onChange={handleChange} required />
                 <input type="password" name="password" placeholder="Mot de passe" onChange={handleChange} required />
                 <select name="role" onChange={handleChange}>
-                    <option value="eleve">Élève</option>
-                    <option value="enseignant">Enseignant</option>
+                    <option value="student">Student</option>
+                    <option value="teacher">Teacher</option>
                     <option value="parent">Parent</option>
-                    <option value="directeur">Directeur</option>
-                    <option value="secretaire">Secrétaire</option>
-                    <option value="employe">Employé</option>
-                </select>
+                    <option value="director">Director</option>
+                    <option value="secretary">Secretary</option>
+                    <option value="staff">Staff</option>
+                    </select>
                 <button type="submit">S'inscrire</button>
             </form>
         </div>
