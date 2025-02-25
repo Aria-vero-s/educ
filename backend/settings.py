@@ -72,8 +72,8 @@ REST_FRAMEWORK = {
 CORS_ALLOW_ALL_ORIGINS = True
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",  # Ton frontend React en local
-    "https://ton-domaine.com"  # Ton domaine en prod
+    "http://localhost:3000",  # Frontend React in local
+    "fantastic-stillness-production.up.railway.app"  # Frontend React in development
 ]
 
 ROOT_URLCONF = 'backend.urls'
